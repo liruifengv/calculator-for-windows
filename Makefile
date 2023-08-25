@@ -1,3 +1,5 @@
+.PHONY: init clean
+
 calculator: main.o add.o
 	gcc -o output/calculator output/main.o output/add.o
 
@@ -7,6 +9,8 @@ main.o: add.o src/main.c
 add.o: src/add.h src/add.c
 	gcc -c src/add.c -o output/add.o
 
-.PHONY: clean
+init:
+	test -d output || mkdir output
+
 clean:
-	rm -f */*.o */calculator
+	rm -f output/*
